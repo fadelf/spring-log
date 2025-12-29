@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <!-- ===================== -->
+    <!-- Path configuration   -->
+    <!-- ===================== -->
+    <property name="LOG_DIR" value="/home/fadhel/log"/>
+    <property name="ARCHIVE_DIR" value="/home/fadhel/log-archive"/>
+
+    <!-- ===================== -->
+    <!-- Rolling File Appender -->
+    <!-- ===================== -->
+    <appender name="ROLLING_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Log file aktif -->
+        <file>${LOG_DIR}/app.log</file>
+
+        <!-- Rolling policy: time-based -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${ARCHIVE_DIR}/app-%d{yyyy-MM-dd_HH}.%i.log
+            </fileNamePattern>
+
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+
+        <!-- Format log -->
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+
+    </appender>
+
+    <!-- ===================== -->
+    <!-- Root Logger           -->
+    <!-- ===================== -->
+    <root level="INFO">
+        <appender-ref ref="ROLLING_FILE"/>
+    </root>
+
+</configuration>
