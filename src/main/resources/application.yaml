@@ -1,3 +1,14 @@
 spring:
   application:
     name: springbootlogging
+  datasource:
+    url: jdbc:mysql://localhost:3306/rimfly?useSSL=false&serverTimezone=Asia/Jakarta
+    username: fadelf
+    password: Rimfly@2025!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
